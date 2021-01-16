@@ -4,7 +4,7 @@
 
 - name: install dovecot
   become: true
-  packages:
+  package:
     name: "{{ dovecot__packages }}"
     state: "{{ dovecot__state }}"
 

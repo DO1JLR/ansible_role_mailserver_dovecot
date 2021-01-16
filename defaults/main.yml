@@ -1,3 +1,18 @@
 ---
-# should we do a version check? (recomended)
+
+# perform basic versionscheck (true is recomended)
 submodules_versioncheck: false
+
+mailserver__user: 'vmail'
+mailserver__group: 'vmail'
+mailserver__home: '/var/vmail'
+
+
+mailserver__ssl_cert: "/var/lib/acme/live/{{ ansible_fqdn }}/fullchain"
+mailserver__ssl_key: "/var/lib/acme/live/{{ ansible_fqdn }}/privkey"
+
+mailserver__mysql_user: 'vmail'
+mailserver__mysql_database: 'vmail'
+mailserver__mysql_password: 'StrongPa$$w0rt'
+
+mailserver__postmaster_address: "postmaster@{{ ansible_fqdn }}"

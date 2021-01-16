@@ -1,4 +1,3 @@
 ---
-# versionscheck
-playbook_version_number: 02 # should be a integer
-playbook_version_path: 'role-<some_unique_string>.version'
+playbook_version_number: 9 # should be int
+playbook_version_path: 'role-mailserver_dovecot_roles-ansile_github.com.version'

@@ -1,4 +1,10 @@
 ---
+dovecot__packages:
+  - dovecot-core
+  - dovecot-imapd
+  - dovecot-pop3d
+
+dovecot__state: 'present'
 
 # perform basic versionscheck (true is recomended)
 submodules_versioncheck: false

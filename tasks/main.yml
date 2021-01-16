@@ -2,6 +2,12 @@
 - include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
 
+- name: install dovecot
+  become: true
+  packages:
+    name: "{{ dovecot__packages }}"
+    state: "{{ dovecot__state }}"
+
 - name: Create config directory
   become: true
   file:

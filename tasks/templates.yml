@@ -5,6 +5,7 @@
     src: templates/dovecot.conf.j2
     dest: /etc/dovecot/dovecot.conf
     mode: "0644"
+  notify: systemctl restart dovecot
 
 - name: Template dovecot-sql.conf
   become: true
@@ -12,6 +13,7 @@
     src: templates/dovecot-sql.j2
     dest: /etc/dovecot/dovecot-sql.conf
     mode: "0440"
+  notify: systemctl restart dovecot
 
 - name: Copy spam-global.sieve
   become: true
@@ -21,6 +23,7 @@
     owner: vmail
     group: vmail
     mode: "0644"
+  notify: systemctl restart dovecot
 
 - name: Copy learn-spam.sieve
   become: true
@@ -30,6 +33,7 @@
     owner: vmail
     group: vmail
     mode: "0644"
+  notify: systemctl restart dovecot
 
 - name: Copy learn-ham.sieve
   become: true
@@ -39,3 +43,4 @@
     owner: vmail
     group: vmail
     mode: "0644"
+  notify: systemctl restart dovecot

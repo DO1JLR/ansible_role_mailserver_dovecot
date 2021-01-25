@@ -16,6 +16,7 @@
     mode: '0755'
     owner: root
     group: root
+  notify: systemctl restart dovecot
 
 - name: create dovecot config
   include_tasks: templates.yml
@@ -25,5 +26,4 @@
   openssl_dhparam:
     path: '/etc/dovecot/dh4096.pem'
     size: 4096
-
-
+  notify: systemctl restart dovecot

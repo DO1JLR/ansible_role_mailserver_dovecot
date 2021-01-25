@@ -3,6 +3,10 @@ dovecot__packages:
   - dovecot-core
   - dovecot-imapd
   - dovecot-pop3d
+  - dovecot-lmtpd
+  - dovecot-mysql
+  - dovecot-sieve
+  - dovecot-managesieved
 
 dovecot__state: 'present'
 

@@ -1,2 +1,6 @@
 ---
-# handlers file for dovecot
+- name: systemctl restart dovecot
+  become: true
+  ansible.builtin.systemd:
+    name: 'dovecot'
+    state: 'restarted'

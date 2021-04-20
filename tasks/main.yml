@@ -1,16 +1,17 @@
 ---
-- include_tasks: versioncheck.yml
+- name: include optional versionscheck
+  ansible.builtin.include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
 
 - name: install dovecot
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ dovecot__packages }}"
     state: "{{ dovecot__state }}"
 
 - name: Create config directory
   become: true
-  file:
+  ansible.builtin.file:
     path: /etc/dovecot
     state: directory
     mode: '0755'
@@ -19,11 +20,11 @@
   notify: systemctl restart dovecot
 
 - name: create dovecot config
-  include_tasks: templates.yml
+  ansible.builtin.include_tasks: templates.yml
 
 - name: create dhparam
   become: true
-  openssl_dhparam:
+  community.crypto.openssl_dhparam:
     path: '/etc/dovecot/dh4096.pem'
     size: 4096
   notify: systemctl restart dovecot

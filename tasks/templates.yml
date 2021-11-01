@@ -23,7 +23,9 @@
     owner: vmail
     group: vmail
     mode: "0644"
-  notify: systemctl restart dovecot
+  notify:
+    - systemctl restart dovecot
+    - sievec spam-global.sieve
 
 - name: Copy learn-spam.sieve
   become: true
@@ -33,7 +35,9 @@
     owner: vmail
     group: vmail
     mode: "0644"
-  notify: systemctl restart dovecot
+  notify:
+    - systemctl restart dovecot
+    - sievec learn-spam.sieve
 
 - name: Copy learn-ham.sieve
   become: true
@@ -43,4 +47,6 @@
     owner: vmail
     group: vmail
     mode: "0644"
-  notify: systemctl restart dovecot
+  notify:
+    - systemctl restart dovecot
+    - sievec learn-ham.sieve

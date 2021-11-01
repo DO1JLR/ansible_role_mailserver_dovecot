@@ -7,12 +7,12 @@
 
 - name: sievec spam-global.sieve
   become: true
-  ansible.builtin.command: sievec /var/vmail/sieve/global/spam-global.sieve
+  ansible.builtin.command: "sievec {{ mailserver__home }}/sieve/global/spam-global.sieve"
 
 - name: sievec learn-spam.sieve
   become: true
-  ansible.builtin.command: sievec /var/vmail/sieve/global/learn-spam.sieve
+  ansible.builtin.command: "sievec {{ mailserver__home }}/sieve/global/learn-spam.sieve"
 
 - name: sievec learn-ham.sieve
   become: true
-  ansible.builtin.command: sievec /var/vmail/sieve/global/learn-ham.sieve
+  ansible.builtin.command: "sievec {{ mailserver__home }}/sieve/global/learn-ham.sieve"

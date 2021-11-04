@@ -15,32 +15,51 @@
     mode: "0440"
   notify: systemctl restart dovecot
 
+- name: mkdir /var/vmail/sieve/global/
+  become: true
+  ansible.builtin.file:
+    state: directory
+    path: "{{ item }}"
+    mode: '0750'
+    owner: "{{ mailserver__user }}"
+    group: "{{ mailserver__group }}"
+  with_items:
+    - "{{ mailserver__home }}/"
+    - "{{ mailserver__home }}/sieve/"
+    - "{{ mailserver__home }}/sieve/global/"
+
 - name: Copy spam-global.sieve
   become: true
   ansible.builtin.copy:
     src: files/spam-global.sieve
-    dest: /var/vmail/sieve/global/spam-global.sieve
-    owner: vmail
-    group: vmail
-    mode: "0644"
-  notify: systemctl restart dovecot
+    dest: "{{ mailserver__home }}/sieve/global/spam-global.sieve"
+    owner: "{{ mailserver__user }}"
+    group: "{{ mailserver__group }}"
+    mode: "0640"
+  notify:
+    - systemctl restart dovecot
+    - sievec spam-global.sieve
 
 - name: Copy learn-spam.sieve
   become: true
   ansible.builtin.copy:
     src: files/learn-spam.sieve
-    dest: /var/vmail/sieve/global/learn-spam.sieve
-    owner: vmail
-    group: vmail
-    mode: "0644"
-  notify: systemctl restart dovecot
+    dest: "{{ mailserver__home }}/sieve/global/learn-spam.sieve"
+    owner: "{{ mailserver__user }}"
+    group: "{{ mailserver__group }}"
+    mode: "0640"
+  notify:
+    - systemctl restart dovecot
+    - sievec learn-spam.sieve
 
 - name: Copy learn-ham.sieve
   become: true
   ansible.builtin.copy:
     src: files/learn-ham.sieve
-    dest: /var/vmail/sieve/global/learn-ham.sieve
-    owner: vmail
-    group: vmail
-    mode: "0644"
-  notify: systemctl restart dovecot
+    dest: "{{ mailserver__home }}/sieve/global/learn-ham.sieve"
+    owner: "{{ mailserver__user }}"
+    group: "{{ mailserver__group }}"
+    mode: "0640"
+  notify:
+    - systemctl restart dovecot
+    - sievec learn-ham.sieve

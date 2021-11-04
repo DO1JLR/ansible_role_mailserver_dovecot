@@ -1,3 +1,4 @@
+# this file is managed by ansible
 require "fileinto";
 
 if header :contains "X-Spam-Flag" "YES" {
